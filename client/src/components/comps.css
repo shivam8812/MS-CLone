@@ -1,0 +1,38 @@
+.root{
+    display: flex;
+    flex-direction: column;
+  }
+.gridContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.container{
+    width: max-content;
+    height: max-content;
+}
+.ui.positive.button.margin,.ui.blue.button.margin,.ui.negative.button.margin,.ui.black.button.margin{
+    margin-top: 20px;
+}
+.padding{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.paper{
+    padding: 10px 20px;
+    border: 2px solid black;
+}
+
+.singlevideo{
+    width: 30vw;
+}
+.video{
+    max-width: 90%;
+    max-height: 40%;   
+}
+
+.videocontainer{
+    display: flex;
+    flex-direction: row;
+}
