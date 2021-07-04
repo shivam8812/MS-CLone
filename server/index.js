@@ -3,6 +3,7 @@ import router from './routes';
 import database from './models';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import path from 'path'
 dotenv.config();
 
 
