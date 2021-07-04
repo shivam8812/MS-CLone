@@ -19,7 +19,7 @@ const Home = (props) => {
     const checktoken = async (token) => {
       const res = await axios({
         method: "POST",
-        url: `http://localhost:5000/api/v1/checktoken`,
+        url: `api/v1/checktoken`,
         headers: {
           "authorization": token,
         },
