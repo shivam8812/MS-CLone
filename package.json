@@ -4,6 +4,9 @@
   "description": "a clone for microsoft clone",
   "main": "index.js",
   "scripts": {
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./server/start.js"
   },
@@ -18,9 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "socket.io": "^4.1.2",
     "cors": "^2.8.5",
-    "serve": "^11.3.2"
-  },
-  "devDependencies": {
+    "serve": "^11.3.2",
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.5",
     "@babel/register": "^7.14.5",
@@ -28,6 +29,9 @@
     "mongoose": "^5.12.14",
     "nodemon": "^2.0.7",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    
   },
   "nodemonConfig": {
     "ignore": [

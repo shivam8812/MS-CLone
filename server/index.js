@@ -1,9 +1,9 @@
 import express from 'express'
 import router from './routes';
 import database from './models';
-import dbconfig from './db.config.json'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+dotenv.config();
 
 
 const app = express();
@@ -13,9 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 5000;
 
-dotenv.config();
 
-database.mongoose.connect(`mongodb+srv://${dbconfig.username}:${dbconfig.password}@${dbconfig.url}/${dbconfig.database}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
+database.mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Successfully connect to MongoDB.");
     })
@@ -34,6 +33,14 @@ export const io = require("socket.io")(server, {
 
 app.use(cors());
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.resolve(__dirname, "../client/build")));
+    // Step 2:
+    app.get("*", function (request, response) {
+        response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+    });
+}
+
 io.on("connection", (socket) => {
     socket.emit("me", socket.id);
 
@@ -48,7 +55,7 @@ io.on("connection", (socket) => {
     socket.on("answerCall", (data) => {
         io.to(data.to).emit("callAccepted", data.signal)
     });
-}); 
+});
 
 
 
