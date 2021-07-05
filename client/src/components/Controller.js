@@ -5,7 +5,6 @@ import { Button, Input } from 'semantic-ui-react'
 import './comps.css'
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
 
 const Controller = ({ children }) => {
   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, setMe } = useContext(SocketContext);
@@ -13,7 +12,7 @@ const Controller = ({ children }) => {
   // setName(localStorage.getItem('username'));
   const generateId = (e) => {
     // e.preventDefault();
-    socket.on('me', (id) => setMe(id));
+    //socket.on('me', (id) => setMe(id));
   }
   return (
     <div className="container">
