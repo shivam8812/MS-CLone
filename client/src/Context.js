@@ -17,14 +17,15 @@ const ContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
+  const [audioStatus, setAudioStatus] = useState(false);
 
-  
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
         setStream(currentStream);
-        if(myVideo.current)
-        myVideo.current.srcObject = currentStream;
+        setAudioStatus(true);
+        if (myVideo.current)
+          myVideo.current.srcObject = currentStream;
       });
 
     socket.on('me', (id) => setMe(id));
@@ -40,7 +41,7 @@ const ContextProvider = ({ children }) => {
   const hangCall = () => {
     setCallAccepted(false);
     console.log(call);
-    setCall({isReceivingCall:false});
+    setCall({ isReceivingCall: false });
     console.log(call);
   }
 
@@ -57,7 +58,6 @@ const ContextProvider = ({ children }) => {
 
     socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
-
       peer.signal(signal);
     });
 
@@ -75,13 +75,28 @@ const ContextProvider = ({ children }) => {
     peer.signal(call.signal);
     connectionRef.current = peer;
   };
-
+  const toggleVideo = (e) => {
+    e.preventDefault();
+    myVideo.current.srcObject.getVideoTracks().forEach(track => track.enabled = !track.enabled);
+  }
+  const toggleAudio = (e) => {
+    e.preventDefault();
+    setAudioStatus(!(audioStatus));
+    myVideo.current.srcObject.getAudioTracks().forEach(track => track.enabled = !track.enabled);
+  }
+  const closeStream = () =>{
+    stream.getTracks().forEach(function(track) {
+      if (track.readyState === 'live') {
+          track.stop();
+      }
+  });
+  }
   const leaveCall = () => {
     setCallEnded(true);
 
     connectionRef.current.destroy();
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
@@ -94,6 +109,10 @@ const ContextProvider = ({ children }) => {
       name,
       callEnded,
       me,
+      audioStatus,
+      closeStream,
+      toggleAudio,
+      toggleVideo,
       setName,
       callUser,
       leaveCall,

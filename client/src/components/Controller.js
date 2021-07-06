@@ -33,7 +33,9 @@ const Controller = ({ children }) => {
             <div className="padding">
               <Input placeholder="Id..." label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
               {callAccepted && !callEnded ? (
-                <Button negative onClick={leaveCall} className="margin">
+                <Button negative onClick={(e) => {
+                  e.preventDefault();
+                  leaveCall()}} className="margin">
                   Hang Up
                 </Button>
               ) : (

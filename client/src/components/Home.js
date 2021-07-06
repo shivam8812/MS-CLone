@@ -6,14 +6,16 @@ import Controller from './Controller';
 import IncomingCall from './IncomingCall';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { SocketContext } from '../Context';
 
 const Home = (props) => {
   const history = useHistory();
+  const {closeStream} = useContext(SocketContext);
   const logout = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
+      closeStream();
       history.replace('/login');
-      window.location.reload();
   }
   useEffect(() => {
     const checktoken = async (token) => {

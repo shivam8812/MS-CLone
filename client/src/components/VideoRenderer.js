@@ -1,35 +1,27 @@
-import React, { useContext,useState,useEffect,useRef,useCallback } from 'react';
+import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { SocketContext } from '../Context';
+import {Icon} from 'semantic-ui-react'
 import './comps.css'
 
 const VideoRenderer = () => {
-  const { me,name,myVideo,stream, callAccepted, userVideo, callEnded, call } = useContext(SocketContext);
-  // const myvideo = useRef();
-  // const [stream,setStream] = useState();
-  // const offVideo =(e)=>{
-  //   e.preventDefault();
-  //   myvideo.current.srcObject = null;
-  // }
-  // useEffect(() => {
-  //   navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-  //     .then((currentStream) => {
-  //       setStream(currentStream);
-  //       // if(myvideo.current)
-  //       myvideo.current.srcObject = currentStream;
-  //     });
-  // }, []);
+  const { me, name, myVideo, stream, callAccepted, userVideo, callEnded, call, toggleVideo,toggleAudio,audioStatus } = useContext(SocketContext);
+
   console.log(me);
   return (
     <div container className="videocontainer">
-        <div className="vppaper">
-          <div className="singlevideo">
-            <div id="video">
+      <div className="vppaper">
+        <div className="singlevideo">
+          <div id="video">
             <h2>{name || 'Name'}</h2>
-            <video playsInline muted ref={myVideo} autoPlay className="video" />
+            <video playsInline muted ref={myVideo} autoPlay className="video" /> <br />
+            <div className="togglebuttons">
+             <Icon name="video" onClick={(e) => toggleVideo(e)} />
+             <Icon name={audioStatus?"microphone slash":"microphone"} onClick={(e) => toggleAudio(e)} />
             </div>
-            {/* <button onClick={offVideo}>video off</button> */}
           </div>
+          {/* <button onClick={offVideo}>video off</button> */}
         </div>
+      </div>
       {callAccepted && !callEnded && (
         <div className="vppaper">
           <div className="singlevideo">
