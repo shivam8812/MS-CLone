@@ -12,11 +12,11 @@ const VideoRenderer = () => {
       <div className="vppaper">
         <div className="singlevideo">
           <div id="video">
-            <h2>{name || 'Name'}</h2>
+            <h2 className="name">{name || 'Name'}</h2>
             <video playsInline muted ref={myVideo} autoPlay className="video" /> <br />
             <div className="togglebuttons">
-             <Icon name="video" onClick={(e) => toggleVideo(e)} />
-             <Icon name={audioStatus?"microphone slash":"microphone"} onClick={(e) => toggleAudio(e)} />
+             <Icon size="big" fitted name="video" onClick={(e) => toggleVideo(e)} />
+             <Icon size="big" fitted name={audioStatus?"microphone slash":"microphone"} onClick={(e) => toggleAudio(e)} />
             </div>
           </div>
           {/* <button onClick={offVideo}>video off</button> */}
@@ -25,7 +25,7 @@ const VideoRenderer = () => {
       {callAccepted && !callEnded && (
         <div className="vppaper">
           <div className="singlevideo">
-            <h2>{call.name || 'Name'}</h2>
+            <h2 className="name">{call.name || 'Name'}</h2>
             <video playsInline ref={userVideo} autoPlay className="video" />
           </div>
         </div>

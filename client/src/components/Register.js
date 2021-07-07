@@ -34,7 +34,7 @@ const Register = () => {
         })
     }
     return (
-        <div className="authcontainer">
+        <div className="authcontainer gradient">
             <div className="formcntr">
                 <h1>Please Register yourself</h1>
                 <form onSubmit={postdata} className="form">

@@ -3,13 +3,11 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { SocketContext } from '../Context';
 import { Button, Input } from 'semantic-ui-react'
 import './comps.css'
-import { io } from 'socket.io-client';
 
 
-const Controller = ({ children }) => {
+const Controller = () => {
   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, setMe } = useContext(SocketContext);
   const [idToCall, setIdToCall] = useState('');
-  // setName(localStorage.getItem('username'));
   const generateId = (e) => {
     // e.preventDefault();
     //socket.on('me', (id) => setMe(id));
@@ -20,7 +18,7 @@ const Controller = ({ children }) => {
         <form className="root" noValidate autoComplete="off">
           <div container className="gridContainer">
             <div className="padding">
-              <Input disabled placeholder="YourId..." label="YourId" value={me} onChange={(e) => setName(e.target.value)} />
+              <Input inverted disabled placeholder="YourId..." label="YourId" value={me} />
               <div className="idButtons">
                 <CopyToClipboard text={me} className="margin">
                   <Button color='blue' onClick={(e) => {
@@ -49,7 +47,6 @@ const Controller = ({ children }) => {
             </div>
           </div>
         </form>
-        {children}
       </div>
     </div>
   );

@@ -4,8 +4,8 @@ import Peer from 'simple-peer';
 
 const SocketContext = createContext();
 
+// const socket = io("http://localhost:5000/");
 const socket = io();
-
 const ContextProvider = ({ children }) => {
   const myVideo = useRef();
   const userVideo = useRef();
@@ -40,9 +40,8 @@ const ContextProvider = ({ children }) => {
 
   const hangCall = () => {
     setCallAccepted(false);
-    console.log(call);
     setCall({ isReceivingCall: false });
-    console.log(call);
+    window.location.reload();
   }
 
   const callUser = (id) => {
@@ -93,10 +92,8 @@ const ContextProvider = ({ children }) => {
   }
   const leaveCall = () => {
     setCallEnded(true);
-
     connectionRef.current.destroy();
-
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (

@@ -6,16 +6,18 @@ const IncomingCall = () => {
   const { answerCall, call, callAccepted,hangCall } = useContext(SocketContext);
 
   return (
-    <div>
+    <div className="incall-cntr">
       {call.isReceivingCall && !callAccepted && (
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <h1>{call.name} is calling:</h1>
-          <Button className="margin" positive onClick={answerCall}>
+        <div className="incall">
+          <h1 className="incall-name">{call.name} is calling:</h1>
+          <div className="buts">
+          <Button className="ic-button" positive onClick={answerCall}>
             Answer
           </Button>
-          <Button className="margin" negative onClick={hangCall}>
+          <Button className="ic-button" negative onClick={hangCall}>
             Hang up
           </Button>
+          </div>
         </div>
       )}
     </div>

@@ -10,7 +10,7 @@ import { SocketContext } from '../Context';
 
 const Home = (props) => {
   const history = useHistory();
-  const {closeStream} = useContext(SocketContext);
+  const {closeStream,call,callAccepted} = useContext(SocketContext);
   const logout = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
@@ -39,20 +39,20 @@ const Home = (props) => {
     checktoken(localStorage.getItem('token'));
   })
   return (
+    <div className="gradient">
     <div className="wrapper">
       <div className="appBar">
         <div className="headandlog">
-          <h2>Welcome {localStorage.getItem('username')}!</h2>
+          <div className="empty"></div>
+          <h2>Welcome {localStorage.getItem('username')}! Chat with your friends</h2>
           <div className="logout">
           <Button className="" floated={'right'} negative onClick={logout} >Logout</Button>
         </div>
         </div>
-        <h2 className="chat">Chat with your friends</h2>
       </div>
       <VideoRenderer />
-      <Controller>
-        <IncomingCall />
-      </Controller>
+      {call.isReceivingCall && !callAccepted?<IncomingCall />:<Controller />}
+    </div>
     </div>
   );
 };

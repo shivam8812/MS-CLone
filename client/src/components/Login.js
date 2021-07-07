@@ -34,7 +34,7 @@ const Login = (props) => {
         // console.log(data);
     }
     return (
-        <div className="authcontainer">
+        <div className="authcontainer gradient">
             <div className="formcntr">
                 <h1>Please Login yourself</h1>
                 <form onSubmit={postdata} className="form">
