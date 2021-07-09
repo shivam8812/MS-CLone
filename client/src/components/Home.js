@@ -32,6 +32,7 @@ const Home = (props) => {
         })
         .catch((err) => {
           console.log(err);
+          closeStream();
           history.replace('/login');
         })
     }

@@ -4,10 +4,12 @@ import database from './models';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import path from 'path'
+import sslRedirect from 'heroku-ssl-redirect';
 dotenv.config();
 
 
 const app = express();
+app.use(sslRedirect());
 const cors = require("cors");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
