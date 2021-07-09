@@ -61,6 +61,8 @@ const ContextProvider = ({ children }) => {
     });
 
     connectionRef.current = peer;
+    console.log("peer",peer);
+    console.log(call);
   };
   const answerCall = () => {
     setCallAccepted(true);
@@ -73,6 +75,8 @@ const ContextProvider = ({ children }) => {
     });
     peer.signal(call.signal);
     connectionRef.current = peer;
+    console.log("peer",peer);
+    console.log(call);
   };
   const toggleVideo = (e) => {
     e.preventDefault();
