@@ -13,3 +13,4 @@ First of all make a collection on mongodb atlas and add the required feilds in .
 Features includes A real time video chat between two persons.
 
 Hosted on https://msclone.herokuapp.com/
+For some reasons due to network traffic try to run the app in the same vicinity.
