@@ -15,7 +15,7 @@ const Register = () => {
         console.log(email);
         const res = await axios({
             method: "POST",
-            url: `api/v1/register`,
+            url: `http://localhost:5000/api/v1/register`,
             headers: {
                 "Content-Type": "application/json"
             },
